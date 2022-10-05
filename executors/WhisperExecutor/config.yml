@@ -1,0 +1,8 @@
+jtype: WhisperExecutor
+py_modules:
+  - executor.py
+metas:
+  name: WhisperExecutor
+  description: WhisperExecutor convert audio to text using opan ai whisper model
+  url: 
+  keywords: ['audio text audio2text open ai whisper']

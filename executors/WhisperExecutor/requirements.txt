@@ -1,0 +1,1 @@
+whisper @ git+https://github.com/openai/whisper.git@02b74308fff49aa0d5dd603faefa76d2edd8d56b
