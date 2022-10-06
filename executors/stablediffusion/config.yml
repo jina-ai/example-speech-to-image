@@ -1,0 +1,8 @@
+jtype: StableDiffusionExecutor
+py_modules:
+  - executor.py
+metas:
+  name: StableDiffusionExecutor
+  description: Generate realistic image from text using stable diffusion model
+  url: 
+  keywords: ['image generation dalle stablediffusion']

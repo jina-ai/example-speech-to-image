@@ -12,11 +12,8 @@ class WhisperExecutor(Executor):
     def transcribe(self, docs: DocumentArray, **kwargs):
 
         for (i, doc_) in enumerate(docs):
-            if not (doc_.tensor):
-                doc_.load_uri_to_audio_tensor()
-                model_output = self.model.transcribe(doc_.tensor)
-                doc_.text = model_output["text"]
-                doc_.tags["segments"] = model_output["segments"]
-                doc_.tags["language"] = model_output["language"]
-                doc_.tensor = None
+            model_output = self.model.transcribe(doc_.uri if not(doc_.tensor) else doc_.tensor)
+            doc_.text = model_output["text"]
+            doc_.tags["segments"] = model_output["segments"]
+            doc_.tags["language"] = model_output["language"]
         return docs

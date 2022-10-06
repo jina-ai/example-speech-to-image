@@ -1,5 +1,8 @@
 from jina import Flow
-from executors.whisper_exec import WhisperExecutor
+from executors.whisper import WhisperExecutor
+from executors.stablediffusion import StableDiffusionExecutor
+import os
 
-with Flow(port=54321).add(uses=WhisperExecutor) as f:
+hf_token = os.getenv('HF_TOKEN')
+with Flow(port=54322).add(uses=WhisperExecutor).add(uses=StableDiffusionExecutor, uses_with={'auth_token': hf_token}) as f:
     f.block()
