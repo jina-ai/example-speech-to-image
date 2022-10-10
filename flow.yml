@@ -11,7 +11,8 @@ executors:
     uses_with:
       auth_token: YOUR_TOKEN
     timeout_ready: -1  # slow download speed often leads to timeout
-    gpus: all
     jcloud:
       resources:
-        memory: 16G
+        gpu: 1
+        memory: 16
+
