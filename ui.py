@@ -2,6 +2,7 @@ import gradio as gr
 from docarray import Document
 from jina import Client
 import typer
+import librosa
 
 app = typer.Typer()
 
@@ -13,8 +14,11 @@ def main(host: str ='localhost:54322'):
 
     def speech_to_text(audio_file_uri):
 
+        d = Document(uri=audio_file_uri)
+        d.tensor = librosa.load(d.uri, sr=16_000)[0]
+
         docs = client.post(
-            on='/', inputs=[Document(uri=audio_file_uri).load_uri_to_audio_tensor()], parameters={'num_images': 2}
+            on='/', inputs=[d], parameters={'num_images': 2}
         )
 
         for img in docs[0].matches:
