@@ -23,11 +23,20 @@ pip intall -r executors/whisper/requirements.txt
 ```
 
 
-* Start the jina FLow ( you need to get a [HF token](https://huggingface.co/docs/hub/security-tokens) and accept the [StableDiffusion terms](https://huggingface.co/spaces/stabilityai/stable-diffusion) to get the model weight. Otherwise you should provide it yourself to the Executor )
+* Start the jina Flow ( you need to get a [HF token](https://huggingface.co/docs/hub/security-tokens) and accept the [StableDiffusion terms](https://huggingface.co/spaces/stabilityai/stable-diffusion) to get the model weight. Otherwise you should provide it yourself to the Executor )
 
 ```bash
 HF_TOKEN=YOUR_FH_TOKEN python flow.py
 ```
+
+* Alternatively you can deploy the Flow on [Jcloud](https://docs.jina.ai/fundamentals/jcloud/). To do so you should edit the flow.yml and put your HF token in it.
+
+```bash
+pip install jcloud
+jc login
+jc deploy flow.yml
+```
+
 
 * Start the [gradio](https://gradio.app/) UI
 
@@ -35,13 +44,21 @@ HF_TOKEN=YOUR_FH_TOKEN python flow.py
 python ui.py
 ```
 
+or if you started the flow in Jcloud you can do
+
+```bash
+python ui.py --host grpcs://FLOW_ID.wolf.jina.ai
+```
+
+
+
 * Or just talk directly to the backend with the jina [Client](https://docs.jina.ai/fundamentals/client/client/)
 
 ```python
 from jina import Client
 from docarray import Document
-client = Client(port=54322)
-docs = client.post("/", inputs=[Document(uri="audio.wav") for _ in range(1)])
+client = Client(host='localhost:54322') 
+docs = client.post('/', inputs=[Document(uri='audio.wav') for _ in range(1)])
 for img in docs[0].matches:
     img.load_uri_to_image_tensor()
 
