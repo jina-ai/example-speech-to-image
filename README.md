@@ -1,4 +1,4 @@
-# audio2image
+# speech2image
 
 Create realistic AI generated images from human voice
 
