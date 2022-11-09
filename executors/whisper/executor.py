@@ -15,7 +15,7 @@ class WhisperExecutor(Executor):
 
         for (i, doc_) in enumerate(docs):
             model_output = self.model.transcribe(
-                doc_.uri if doc_.tensor is None else doc_.tensor, task='translate'
+                doc_.uri if doc_.tensor is None else doc_.tensor, task='translate', language=doc_.tags.get('language', 'English')
             )
             doc_.text = model_output['text']
             doc_.tags['segments'] = model_output['segments']
