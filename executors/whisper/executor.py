@@ -5,8 +5,10 @@ from jina import Executor, requests
 class WhisperExecutor(Executor):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.logger.info('loading model')
         import whisper
         self.model = whisper.load_model('base')
+        self.logger.info('model loaded')
 
     @requests
     def transcribe(self, docs: DocumentArray, **kwargs):
