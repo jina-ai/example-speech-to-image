@@ -9,6 +9,6 @@ f = (
     Flow(port=54322)
     .add(uses=WhisperExecutor, timeout_ready=-1)
 )
-
-with f:
-    f.block()
+if __name__ == '__main__':
+    with f:
+        f.block()
