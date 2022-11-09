@@ -31,8 +31,7 @@ class StableDiffusionExecutor(Executor):
     ) -> Document:
 
         with torch.autocast('cuda'):
-            generated_imgs = self.diffusion([document.text] * int(num_images))
-            print(generated_imgs)
+            generated_imgs = self.diffusion([document.text] * int(num_images)).images
 
         for img in generated_imgs:
             _generated_document = Document(
