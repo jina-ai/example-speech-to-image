@@ -8,7 +8,6 @@ hf_token = os.getenv('HF_TOKEN')
 f = (
     Flow(port=54322)
     .add(uses=WhisperExecutor)
-    .add(uses=StableDiffusionExecutor, uses_with={'auth_token': hf_token})
 )
 
 with f:
