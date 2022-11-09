@@ -1,4 +1,3 @@
-import whisper
 from docarray import DocumentArray
 from jina import Executor, requests
 
@@ -6,6 +5,7 @@ from jina import Executor, requests
 class WhisperExecutor(Executor):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        import whisper
         self.model = whisper.load_model('base')
 
     @requests
