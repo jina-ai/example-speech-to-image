@@ -17,9 +17,9 @@ This is an example of a multi-modal application that can be built with [jina](ht
 * Install requirements:
 
 ```bash
-pip intall -r requirements.txt
-pip intall -r executors/stablediffusion/requirements.txt
-pip intall -r executors/whisper/requirements.txt
+pip install -r requirements.txt
+pip install -r executors/stablediffusion/requirements.txt
+pip install -r executors/whisper/requirements.txt
 ```
 
 
