@@ -12,10 +12,10 @@ def main(host: str = 'localhost:54322'):
 
     client = Client(host=host)
 
-    def speech_to_text(audio_file_uri):
-
+    def speech_to_text(audio_file_uri, language):
         d = Document(uri=audio_file_uri)
         d.tensor = librosa.load(d.uri, sr=16_000)[0]
+        d.tags['language'] = language
 
         docs = client.post(on='/', inputs=[d], parameters={'num_images': 2})
 
@@ -28,6 +28,7 @@ def main(host: str = 'localhost:54322'):
         fn=speech_to_text,
         inputs=[
             gr.Audio(source='microphone', type='filepath'),
+            gr.Dropdown(choices=['English', 'Frensh', 'Arabic'], value='English', type='value')
         ],
         outputs=['image', 'image', 'text'],
     ).launch()
