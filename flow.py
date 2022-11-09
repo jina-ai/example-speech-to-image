@@ -7,7 +7,7 @@ hf_token = os.getenv('HF_TOKEN')
 
 f = (
     Flow(port=54322)
-    .add(uses=WhisperExecutor)
+    .add(uses=WhisperExecutor, timeout_ready=-1)
 )
 
 with f:
