@@ -28,7 +28,7 @@ def main(host: str = 'localhost:54322'):
         fn=speech_to_text,
         inputs=[
             gr.Audio(source='microphone', type='filepath'),
-            gr.Dropdown(choices=['English', 'Frensh', 'Arabic'], value='English', type='value')
+            gr.Dropdown(choices=['English', 'French', 'Arabic'], value='English', type='value')
         ],
         outputs=['image', 'image', 'text'],
     ).launch()
