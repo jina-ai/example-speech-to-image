@@ -20,6 +20,14 @@ class WhisperExecutor(Executor):
 
     @requests
     def transcribe(self, docs: DocumentArray, **kwargs):
+        """
+        Receives a DocumentArray of Documents containing audio data, either in `Document.uri` or `Document.tensor`,
+        converts it to text using whisper model and inserts the resulting text in `Document.text`.
+        It is also possible to perform translation of other languages into english. In this case, the language should
+        be specified in `Document.tags` as a key-value pair, for instance: 'language': 'French'
+        List of supported languages: https://github.com/openai/whisper/blob/8cf36f3508c9acd341a45eb2364239a3d81458b9/whisper/tokenizer.py#L10
+        :param model_name: the model name used to load whisper. Available model names: https://github.com/openai/whisper#available-models-and-languages
+        """
 
         for (i, doc_) in enumerate(docs):
             model_output = self.model.transcribe(
