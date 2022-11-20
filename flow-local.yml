@@ -1,4 +1,6 @@
 jtype: Flow
+with:
+  port: 54322
 executors:
   - name: whisper
     uses: executors/whisper/config.yml
