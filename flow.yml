@@ -15,4 +15,3 @@ executors:
       resources:
         gpu: 1
         memory: 16
-
