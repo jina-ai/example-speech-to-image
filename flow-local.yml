@@ -1,21 +1,20 @@
 jtype: Flow
+with:
+  port: 54322
 executors:
   - name: whisper
-    uses: jinahub+docker://WhisperExecutor
+    uses: executors/whisper/config.yml
     uses_with:
       model_name: medium
+    env:
+      CUDA_VISIBLE_DEVICES: 0
     gpus: all
-    jcloud:
-      resources:
-        gpu: 1
-        memory: 2
   - name: diffusion
-    uses: jinahub+docker://StableDiffusionExecutor
+    uses: jinahub://StableDiffusionExecutor
     uses_with:
       auth_token: ${{ ENV.HF_TOKEN }}
     timeout_ready: -1  # slow download speed often leads to timeout
     replicas: 2
-    jcloud:
-      resources:
-        gpu: 1
-        memory: 16
+    env:
+      CUDA_VISIBLE_DEVICES: RR1:3
+

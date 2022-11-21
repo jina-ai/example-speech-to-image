@@ -7,9 +7,9 @@ hf_token = os.getenv('HF_TOKEN')
 
 f = (
     Flow(port=54322)
-    .add(uses=WhisperExecutor)
+    .add(uses=WhisperExecutor, timeout_ready=-1, uses_with={'model_name': 'large'})
     .add(uses=StableDiffusionExecutor, uses_with={'auth_token': hf_token})
 )
-
-with f:
-    f.block()
+if __name__ == '__main__':
+    with f:
+        f.block()
