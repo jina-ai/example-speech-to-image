@@ -26,7 +26,7 @@ pip install -r executors/whisper/requirements.txt
 * Start the jina Flow ( you need to get a [HF token](https://huggingface.co/docs/hub/security-tokens) and accept the [StableDiffusion terms](https://huggingface.co/spaces/stabilityai/stable-diffusion) to get the model weight. Otherwise you should provide it yourself to the Executor )
 
 ```bash
-JINA_MP_START_METHOD=spawn HF_TOKEN=YOUR_FH_TOKEN python flow.py
+JINA_MP_START_METHOD=spawn HF_TOKEN=YOUR_HF_TOKEN python flow.py
 ```
 
 * Alternatively you can deploy the Flow on [Jcloud](https://docs.jina.ai/fundamentals/jcloud/). To do so you should edit the flow.yml and put your HF token in it.
