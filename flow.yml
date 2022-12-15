@@ -8,14 +8,14 @@ executors:
     jcloud:
       resources:
         gpu: 1
-        memory: 2
+        memory: 2G
   - name: diffusion
     uses: jinahub+docker://StableDiffusionExecutor
     uses_with:
       auth_token: ${{ ENV.HF_TOKEN }}
-    timeout_ready: -1  # slow download speed often leads to timeout
+    timeout_ready: -1 # slow download speed often leads to timeout
     replicas: 2
     jcloud:
       resources:
         gpu: 1
-        memory: 16
+        memory: 16G
